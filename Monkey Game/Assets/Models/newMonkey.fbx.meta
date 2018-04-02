@@ -1,0 +1,446 @@
+fileFormatVersion: 2
+guid: 600f55fab2249ae4caa878bf31b640eb
+timeCreated: 1522536328
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Arm L
+    100002: Arm R
+    100004: Bone
+    100006: Bone.001
+    100008: Bone.002
+    100010: Bone.002_end
+    100012: Chest
+    100014: chest
+    100016: Ear L
+    100018: Ear R
+    100020: Eye L
+    100022: Eye R
+    100024: Foot L
+    100026: Foot L.001
+    100028: foot.L
+    100030: foot.R
+    100032: forearm.L
+    100034: forearm.R
+    100036: Hand L
+    100038: Hand L.001
+    100040: hand.L
+    100042: hand.L.001
+    100044: hand.L.002
+    100046: hand.L.002_end
+    100048: hand.R
+    100050: Head
+    100052: Heel L
+    100054: Heel L.001
+    100056: heel.02.L
+    100058: heel.02.L_end
+    100060: heel.02.R
+    100062: heel.02.R_end
+    100064: heel.L
+    100066: heel.R
+    100068: hips
+    100070: Icosphere
+    100072: Leg L
+    100074: Leg L.001
+    100076: metarig
+    100078: Mouth
+    100080: neck
+    100082: neck_end
+    100084: //RootNode
+    100086: Pupil L
+    100088: Pupil R
+    100090: shoulder.L
+    100092: shoulder.R
+    100094: spine
+    100096: thigh.L
+    100098: thigh.L.001
+    100100: thigh.R
+    100102: thigh.R.001
+    100104: thumb.01.L
+    100106: thumb.01.L_end
+    100108: thumb.01.R
+    100110: thumb.01.R_end
+    100112: toe.L
+    100114: toe.L_end
+    100116: toe.R
+    100118: toe.R_end
+    100120: Torso
+    100122: upper_arm.L
+    100124: upper_arm.R
+    400000: Arm L
+    400002: Arm R
+    400004: Bone
+    400006: Bone.001
+    400008: Bone.002
+    400010: Bone.002_end
+    400012: Chest
+    400014: chest
+    400016: Ear L
+    400018: Ear R
+    400020: Eye L
+    400022: Eye R
+    400024: Foot L
+    400026: Foot L.001
+    400028: foot.L
+    400030: foot.R
+    400032: forearm.L
+    400034: forearm.R
+    400036: Hand L
+    400038: Hand L.001
+    400040: hand.L
+    400042: hand.L.001
+    400044: hand.L.002
+    400046: hand.L.002_end
+    400048: hand.R
+    400050: Head
+    400052: Heel L
+    400054: Heel L.001
+    400056: heel.02.L
+    400058: heel.02.L_end
+    400060: heel.02.R
+    400062: heel.02.R_end
+    400064: heel.L
+    400066: heel.R
+    400068: hips
+    400070: Icosphere
+    400072: Leg L
+    400074: Leg L.001
+    400076: metarig
+    400078: Mouth
+    400080: neck
+    400082: neck_end
+    400084: //RootNode
+    400086: Pupil L
+    400088: Pupil R
+    400090: shoulder.L
+    400092: shoulder.R
+    400094: spine
+    400096: thigh.L
+    400098: thigh.L.001
+    400100: thigh.R
+    400102: thigh.R.001
+    400104: thumb.01.L
+    400106: thumb.01.L_end
+    400108: thumb.01.R
+    400110: thumb.01.R_end
+    400112: toe.L
+    400114: toe.L_end
+    400116: toe.R
+    400118: toe.R_end
+    400120: Torso
+    400122: upper_arm.L
+    400124: upper_arm.R
+    2100000: Material.001
+    2100002: Material.004
+    2100004: Material.003
+    2100006: Material.002
+    2300000: Ear L
+    2300002: Ear R
+    2300004: Eye L
+    2300006: Eye R
+    2300008: Mouth
+    2300010: Pupil L
+    2300012: Pupil R
+    3300000: Ear L
+    3300002: Ear R
+    3300004: Eye L
+    3300006: Eye R
+    3300008: Mouth
+    3300010: Pupil L
+    3300012: Pupil R
+    4300000: Mouth
+    4300002: Eye L
+    4300004: Pupil L
+    4300006: Eye R
+    4300008: Pupil R
+    4300010: Ear L
+    4300012: Ear R
+    4300014: Hand L.001
+    4300016: Hand L
+    4300018: Leg L.001
+    4300020: Heel L.001
+    4300022: Foot L.001
+    4300024: Foot L
+    4300026: Heel L
+    4300028: Leg L
+    4300030: Icosphere
+    4300032: Head
+    4300034: Torso
+    4300036: Chest
+    4300038: Arm R
+    4300040: Arm L
+    7400000: metarig|ArmIdle
+    7400002: metarig|Die
+    7400004: metarig|Jump
+    7400006: metarig|JumpArm
+    7400008: metarig|metarigAction
+    7400010: metarig|PoseLib
+    9500000: //RootNode
+    13700000: Arm L
+    13700002: Arm R
+    13700004: Chest
+    13700006: Foot L
+    13700008: Foot L.001
+    13700010: Hand L
+    13700012: Hand L.001
+    13700014: Head
+    13700016: Heel L
+    13700018: Heel L.001
+    13700020: Icosphere
+    13700022: Leg L
+    13700024: Leg L.001
+    13700026: Torso
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 29ffa6ef28b8e6f4186107229ecc0c83, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: metarig|ArmIdle
+      takeName: metarig|ArmIdle
+      firstFrame: 0
+      lastFrame: 77
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Die
+      takeName: metarig|Die
+      firstFrame: 0
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Jump
+      takeName: metarig|Jump
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|JumpArm
+      takeName: metarig|JumpArm
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|metarigAction
+      takeName: metarig|metarigAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|PoseLib
+      takeName: metarig|PoseLib
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: hips
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

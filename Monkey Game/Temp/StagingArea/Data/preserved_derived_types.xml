@@ -1,0 +1,18 @@
+<linker>
+<assembly fullname="Assembly-CSharp">
+<type fullname="backdrop" preserve="all"/>
+<type fullname="BlueJay" preserve="all"/>
+<type fullname="mShift" preserve="all"/>
+<type fullname="BananaGenerator" preserve="all"/>
+<type fullname="BoardTile" preserve="all"/>
+<type fullname="Branch" preserve="all"/>
+<type fullname="Cliff" preserve="all"/>
+<type fullname="fourBranch" preserve="all"/>
+<type fullname="gameMaster" preserve="all"/>
+<type fullname="gridRoot" preserve="all"/>
+<type fullname="Monkey" preserve="all"/>
+<type fullname="oneBranch" preserve="all"/>
+<type fullname="spin" preserve="all"/>
+<type fullname="twoBranch" preserve="all"/>
+</assembly>
+</linker>
