@@ -15,7 +15,7 @@ public class gameMaster : MonoBehaviour {
     void Start() {
         gameStates = new string[] {
             "3 3 11111c11c 3 1 1 3 xxxxxxxxxxxx",
-            "4 4 b1111c1111c1c11c 4 3 3 4 xxxxxxxxxxxxxxxxxxxxxxxx",
+            "4 4 11111c1111c1c11c 4 3 3 4 xxxxxxxxxxxxxxxxxxxxxxxx",
             "3 3 11111c11c 3 1 1 3 xxxxxbxxxxxx",
             "3 3 11111c11c 3 1 1 3 bxxxxbxxxxxx",
             "3 3 111111111 3 1 1 1 xbxbxbxxxxxx",
