@@ -68,8 +68,13 @@ public class Monkey : MonoBehaviour {
         }
 		//Debug.Log(currentObjectGrid[currentRow-1][currentCol-1].name);
 		if ((Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow)) && (currentRow - 1) >= 1) {
-			if(!birded)
+			if (!birded)
 				LeaveTile (currentRow - 1, currentCol - 1);
+			else {
+				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
+			}
 			currentRow--;
 
 			if (lastDirection == "down")
@@ -91,15 +96,16 @@ public class Monkey : MonoBehaviour {
 
 			if (!birded)
 				TouchTile (currentRow - 1, currentCol - 1);
+
+			//canMove = true;
+		} else if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow)) && (currentCol - 1) >= 1) {
+			if(!birded)
+				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
 				if (birdMoves <= 0)
 					birded = false;
 			}
-			//canMove = true;
-		} else if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow)) && (currentCol - 1) >= 1) {
-			if(!birded)
-				LeaveTile (currentRow - 1, currentCol - 1);
 			currentCol--;
 
 			if (lastDirection == "right")
@@ -120,11 +126,6 @@ public class Monkey : MonoBehaviour {
 			lastDirection = "left";
 			if (!birded)
 				TouchTile(currentRow - 1, currentCol - 1);
-			else {
-				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
-			}
 		}
 
 			//canMove = true;
@@ -133,6 +134,11 @@ public class Monkey : MonoBehaviour {
         {
 			if(!birded)
             	LeaveTile(currentRow - 1, currentCol - 1);
+			else {
+				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
+			}
             currentRow++;
 
 			if (lastDirection == "up")
@@ -153,17 +159,18 @@ public class Monkey : MonoBehaviour {
 			lastDirection = "down";
 			if (!birded)
 				TouchTile(currentRow - 1, currentCol - 1);
-			else {
-				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
-				}
+
             //canMove = true;
         }
 		else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (currentCol + 1) <= maxCol)
         {
 			if(!birded)
 				LeaveTile(currentRow - 1, currentCol - 1);
+			else {
+				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
+			}
 			currentCol++;
 
 			if (lastDirection == "left")
@@ -184,11 +191,7 @@ public class Monkey : MonoBehaviour {
 			lastDirection = "right";
 			if (!birded)
 				TouchTile (currentRow - 1, currentCol - 1);
-			else {
-				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
-				}
+
             //canMove = true;
         }
     }
