@@ -68,9 +68,7 @@ public class Monkey : MonoBehaviour {
         }
 		//Debug.Log(currentObjectGrid[currentRow-1][currentCol-1].name);
 		if ((Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow)) && (currentRow - 1) >= 1) {
-
-			if(!birded)
-				LeaveTile (currentRow - 1, currentCol - 1);
+			LeaveTile (currentRow - 1, currentCol - 1);
 			currentRow--;
 
 			if (lastDirection == "down")
@@ -99,8 +97,7 @@ public class Monkey : MonoBehaviour {
 			}
 			//canMove = true;
 		} else if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow)) && (currentCol - 1) >= 1) {
-			if(!birded)
-				LeaveTile (currentRow - 1, currentCol - 1);
+			LeaveTile (currentRow - 1, currentCol - 1);
 			currentCol--;
 
 			if (lastDirection == "right")
@@ -132,8 +129,7 @@ public class Monkey : MonoBehaviour {
 
 		else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && (currentRow + 1) <= maxRow)
         {
-			if(!birded)
-				LeaveTile(currentRow - 1, currentCol - 1);
+            LeaveTile(currentRow - 1, currentCol - 1);
             currentRow++;
 
 			if (lastDirection == "up")
@@ -163,8 +159,7 @@ public class Monkey : MonoBehaviour {
         }
 		else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (currentCol + 1) <= maxCol)
         {
-			if(!birded)
-				LeaveTile(currentRow - 1, currentCol - 1);
+            LeaveTile(currentRow - 1, currentCol - 1);
 			currentCol++;
 
 			if (lastDirection == "left")
@@ -220,9 +215,12 @@ public class Monkey : MonoBehaviour {
         {
             currentObjectGrid[x][y].GetComponent<oneBranch>().KillTree();
         }
-		else if (currentObjectGrid[x][y].name.Contains("twoB") && currentObjectGrid[x][y].gameObject.GetComponent<twoBranch>().touchCount >= 2)
+		else if (currentObjectGrid[x][y].name.Contains("twoB"))
         {
-            currentObjectGrid[x][y].GetComponent<twoBranch>().KillTree();
+            if (currentObjectGrid[x][y].gameObject.GetComponent<twoBranch>().touchCount >= 2)
+                currentObjectGrid[x][y].GetComponent<twoBranch>().KillTree();
+            else
+                currentObjectGrid[x][y].GetComponent<twoBranch>().switchTree();
         }
         else if (currentObjectGrid[x][y].name.Contains("fourB"))
         {

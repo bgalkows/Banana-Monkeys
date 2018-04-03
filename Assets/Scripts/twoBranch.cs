@@ -9,8 +9,8 @@ public class twoBranch : MonoBehaviour {
 	public Avatar backup;
 	// Use this for initialization
 	void Start () {
-		touchCount = 0;	
-	}
+		touchCount = 0;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,21 +21,22 @@ public class twoBranch : MonoBehaviour {
 	{
 		
 		if (touchCount >= 2) {
-			this.GetComponent<SpriteRenderer> ().enabled = false;
+			//this.GetComponent<SpriteRenderer> ().enabled = false;
 			GameObject player = GameObject.FindGameObjectWithTag ("Monkey");
 			player.GetComponent<Monkey> ().Die ();
 		} else {
 			touchCount++;
 			Animator anim = this.GetComponent<Animator> ();
-		}
+        }
 	}
     public void KillTree()
     {
-        MeshRenderer[] m = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer r in m)
-        {
-            r.enabled = false;
-        }
+        transform.Find("palmtree").gameObject.SetActive(false);
     }
 
+    public void switchTree()
+    {
+        transform.Find("twotree").gameObject.SetActive(false);
+        transform.Find("palmtree").gameObject.SetActive(true);
+    }
 }
