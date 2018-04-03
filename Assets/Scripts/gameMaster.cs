@@ -118,6 +118,12 @@ public class gameMaster : MonoBehaviour {
         }
         generator.objectGrid.Clear();
 
+		foreach (GameObject b in bananaGen.bananaList)
+		{
+			Destroy(b);
+		}
+
+
         generator.actualGenerateGrid (rows, cols, state, startRow, startCol, endRow, endCol);
         bananaGen.GenerateBananas(rows, cols, bananaString);
         GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
