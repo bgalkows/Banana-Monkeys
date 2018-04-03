@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +38,7 @@ public class gridRoot : MonoBehaviour {
 		GameObject twoBranch = Resources.Load ("twoBranch") as GameObject;
 		GameObject fourBranch = Resources.Load ("fourBranch") as GameObject;
 		GameObject Cliff = Resources.Load ("Cliff") as GameObject;
-		GameObject blue = Resources.Load ("Blue Jay") as GameObject;
+		GameObject blue = Resources.Load ("dummyBird") as GameObject;
 
 		Vector3 start = this.transform.position;
         Debug.Log(start);
@@ -78,17 +80,17 @@ public class gridRoot : MonoBehaviour {
 				}
 					else if (input [stringIndex] == 'b') {
 					GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
-					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 3.8f, currentZ), Quaternion.identity) as GameObject;
+					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 2.5f, currentZ), Quaternion.identity) as GameObject;
 					objectGrid [r].Add (current);
-					//objectGrid [r].Add (current2);
-					current2.GetComponent<BlueJay> ().latentMoveStock = 4;
+					objectGrid [r].Add (current2);
+					current2.transform.GetChild(0).GetComponent<BlueJay> ().latentMoveStock = 4;
 				}
 					else if (input [stringIndex] == 'n') {
 					GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
-					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 3.8f, currentZ), Quaternion.identity) as GameObject;
+					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 2.5f, currentZ), Quaternion.identity) as GameObject;
 					objectGrid [r].Add (current);
-					//objectGrid [r].Add (current2);
-					current2.GetComponent<BlueJay> ().latentMoveStock = 2;
+					objectGrid [r].Add (current2);
+					current2.transform.GetChild(0).GetComponent<BlueJay> ().latentMoveStock = 2;
 				}
 
 				currentX += offset;
