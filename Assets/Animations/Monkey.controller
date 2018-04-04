@@ -109,7 +109,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Jump
-  m_Speed: 4
+  m_Speed: 6
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101047774200747898}
@@ -193,7 +193,7 @@ AnimatorStateMachine:
     m_Position: {x: 180, y: 228, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102024590932123642}
-    m_Position: {x: -36, y: 228, z: 0}
+    m_Position: {x: -48, y: 228, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102685912413960980}
     m_Position: {x: 60, y: 360, z: 0}

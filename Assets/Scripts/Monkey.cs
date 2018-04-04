@@ -7,7 +7,7 @@ public class Monkey : MonoBehaviour {
 
 	public int bananaCount = 0, bananaGoal;
     public float offset = 0.2f;
-    public float jumpSpeed = 2;
+    public float jumpSpeed = 8;
 	public int birdMoves = 0;
 	public bool birded = false;
 
