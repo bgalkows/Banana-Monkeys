@@ -31,7 +31,7 @@ public class BlueJay : MonoBehaviour {
 				r.enabled = false;
 			}
 
-			m.birded = true;
+            m.birded = m.justBirded = true;
 			m.birdMoves += latentMoveStock;
 			proc = true;
 		}

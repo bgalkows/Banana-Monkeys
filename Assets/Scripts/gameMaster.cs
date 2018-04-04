@@ -42,7 +42,10 @@ public class gameMaster : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.F))
+        {
+            levelWin();
+        }
 	}
 
 	public void levelDefeat()

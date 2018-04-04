@@ -9,7 +9,7 @@ public class Monkey : MonoBehaviour {
     public float offset = 0.2f;
     public float jumpSpeed = 8;
 	public int birdMoves = 0;
-	public bool birded = false;
+    public bool birded = false, justBirded = false;
 
     public bool canMove = true;
     private Animator anim;
@@ -31,6 +31,11 @@ public class Monkey : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (birded) {
+            if (justBirded)
+            {
+                LeaveTile(currentRow - 1, currentCol - 1);
+                justBirded = false;
+            }
 			GameObject myBird = GameObject.FindGameObjectWithTag ("Finish");
 			MeshRenderer[] m = GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer r in m)
@@ -72,8 +77,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentRow--;
 
@@ -103,8 +106,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentCol--;
 
@@ -136,8 +137,6 @@ public class Monkey : MonoBehaviour {
             	LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
             currentRow++;
 
@@ -168,8 +167,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentCol++;
 
@@ -240,7 +237,7 @@ public class Monkey : MonoBehaviour {
     {
         Debug.Log("Collision!");
 
-        if (c.gameObject.tag == "Banana")
+        if (c.gameObject.tag == "Banana" && !birded)
         {
             Debug.Log("banana acquired");
 
@@ -273,6 +270,11 @@ public class Monkey : MonoBehaviour {
     {
         // Called by the end of the animation clip
         transform.position = new Vector3(transform.position.x, origHeight, transform.position.z);
+        if (birded && birdMoves <= 0)
+        {
+            birded = false;
+            TouchTile(currentRow - 1, currentCol - 1);
+        }
         canMove = true;
     }
     public void StopMovement()
