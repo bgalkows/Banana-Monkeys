@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,44 +8,39 @@ using UnityEngine.UI;
 public class Monkey : MonoBehaviour {
 
 	public int bananaCount = 0, bananaGoal;
-    public float offset = 0.2f;
-    public float jumpSpeed = 8;
+	public float offset = 0.2f;
+	public float jumpSpeed = 8;
 	public int birdMoves = 0;
-    public bool birded = false, justBirded = false;
+	public bool birded = false;
 
-    public bool canMove = true;
-    private Animator anim;
-	private string lastDirection = "up";
-    private Vector3 m_destination;
-    private float origHeight;
+	public bool canMove = true;
+	private Animator anim;
+	public string lastDirection = "up";
+	private Vector3 m_destination;
+	private float origHeight;
 
 	public List<List<GameObject>> currentObjectGrid; 
 	public int maxRow, maxCol;
 	public int currentRow = 4, currentCol = 1;
 
-    void Start()
-    {
-        anim = GetComponent<Animator>();
+	void Start()
+	{
+		anim = GetComponent<Animator>();
 		//setCurrentPosition (4, 1);
-        origHeight = transform.position.y;
-    }
+		origHeight = transform.position.y;
+	}
 
 	// Update is called once per frame
 	void Update () {
 		if (birded) {
-            if (justBirded)
-            {
-                LeaveTile(currentRow - 1, currentCol - 1);
-                justBirded = false;
-            }
 			GameObject myBird = GameObject.FindGameObjectWithTag ("Finish");
 			MeshRenderer[] m = GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer r in m)
 			{
 				r.enabled = true;
 			}
-			}
-		 else{
+		}
+		else{
 			GameObject myBird = GameObject.FindGameObjectWithTag ("Finish");
 			MeshRenderer[] m = GetComponentsInChildren<MeshRenderer>();
 			foreach (MeshRenderer r in m)
@@ -53,30 +50,33 @@ public class Monkey : MonoBehaviour {
 		}
 
 
-        if (!canMove)
-        {
-            Vector3 directionOfTravel = m_destination - transform.position;
-            if (directionOfTravel.magnitude <= 0.05f)
-                RestoreMovement();
-            //now normalize the direction, since we only want the direction information
-            directionOfTravel.Normalize();
-            //scale the movement on each axis by the directionOfTravel vector components
+		if (!canMove)
+		{
+			Vector3 directionOfTravel = m_destination - transform.position;
+			if (directionOfTravel.magnitude <= 0.05f)
+				RestoreMovement();
+			//now normalize the direction, since we only want the direction information
+			directionOfTravel.Normalize();
+			//scale the movement on each axis by the directionOfTravel vector components
 
-            this.transform.Translate(
-                (directionOfTravel.x * jumpSpeed * Time.deltaTime),
-                (directionOfTravel.y * jumpSpeed * Time.deltaTime),
-                (directionOfTravel.z * jumpSpeed * Time.deltaTime),
-                Space.World);
-            //transform.position = m_destination;
+			this.transform.Translate(
+				(directionOfTravel.x * jumpSpeed * Time.deltaTime),
+				(directionOfTravel.y * jumpSpeed * Time.deltaTime),
+				(directionOfTravel.z * jumpSpeed * Time.deltaTime),
+				Space.World);
+			//transform.position = m_destination;
 
-            return;
-        }
+			return;
+		}
 		//Debug.Log(currentObjectGrid[currentRow-1][currentCol-1].name);
 		if ((Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow)) && (currentRow - 1) >= 1) {
+			Debug.Log ("start touch");
 			if (!birded)
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
 			}
 			currentRow--;
 
@@ -97,15 +97,19 @@ public class Monkey : MonoBehaviour {
 
 			lastDirection = "up";
 
+			Debug.Log ("leave touch");
 			if (!birded)
 				TouchTile (currentRow - 1, currentCol - 1);
 
 			//canMove = true;
 		} else if ((Input.GetKeyDown (KeyCode.A) || Input.GetKeyDown (KeyCode.LeftArrow)) && (currentCol - 1) >= 1) {
+			Debug.Log ("start touch");
 			if(!birded)
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
 			}
 			currentCol--;
 
@@ -125,20 +129,24 @@ public class Monkey : MonoBehaviour {
 			////
 
 			lastDirection = "left";
+			Debug.Log ("leave touch");
 			if (!birded)
 				TouchTile(currentRow - 1, currentCol - 1);
 		}
 
-			//canMove = true;
+		//canMove = true;
 
 		else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && (currentRow + 1) <= maxRow)
-        {
+		{
+			Debug.Log ("start touch");
 			if(!birded)
-            	LeaveTile(currentRow - 1, currentCol - 1);
+				LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
 			}
-            currentRow++;
+			currentRow++;
 
 			if (lastDirection == "up")
 				this.transform.Rotate (new Vector3 (0, 180, 0));
@@ -150,23 +158,27 @@ public class Monkey : MonoBehaviour {
 			canMove = false;
 			float newZ = this.transform.position.z - offset;
 
-            ////
-            anim.SetTrigger("Jump");
-            m_destination = new Vector3 (this.transform.position.x, this.transform.position.y, newZ);
-            ////
+			////
+			anim.SetTrigger("Jump");
+			m_destination = new Vector3 (this.transform.position.x, this.transform.position.y, newZ);
+			////
 
 			lastDirection = "down";
+			Debug.Log ("leave touch");
 			if (!birded)
 				TouchTile(currentRow - 1, currentCol - 1);
 
-            //canMove = true;
-        }
+			//canMove = true;
+		}
 		else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && (currentCol + 1) <= maxCol)
-        {
+		{
+			Debug.Log ("start touch");
 			if(!birded)
 				LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
+				if (birdMoves <= 0)
+					birded = false;
 			}
 			currentCol++;
 
@@ -176,111 +188,107 @@ public class Monkey : MonoBehaviour {
 				this.transform.Rotate (new Vector3 (0, 90, 0));
 			else if (lastDirection == "down")
 				this.transform.Rotate (new Vector3 (0, 270, 0));
-            
+
 			canMove = false;
 			float newX = this.transform.position.x + offset;
 
-            ////
-            anim.SetTrigger("Jump");
-            m_destination = new Vector3 (newX, this.transform.position.y, this.transform.position.z);      
-            ////
+			////
+			anim.SetTrigger("Jump");
+			m_destination = new Vector3 (newX, this.transform.position.y, this.transform.position.z);      
+			////
 
 			lastDirection = "right";
+			Debug.Log ("leave touch");
 			if (!birded)
 				TouchTile (currentRow - 1, currentCol - 1);
 
-            //canMove = true;
-        }
-    }
+			//canMove = true;
+		}
+	}
 
-    void TouchTile(int x, int y)
-    {
-        if (currentObjectGrid[x][y].name.Contains("oneB"))
-        {
-            currentObjectGrid[x][y].GetComponent<oneBranch>().Touch();
-        }
-        else if (currentObjectGrid[x][y].name.Contains("twoB"))
-        {
-            currentObjectGrid[x][y].GetComponent<twoBranch>().Touch();
-        }
-        else if (currentObjectGrid[x][y].name.Contains("fourB"))
-        {
-
-        }
-        else if (currentObjectGrid[x][y].name.Contains("Cliff"))
-        {
-            currentObjectGrid[x][y].GetComponent<Cliff>().Touch();
-        }
-    }
-
-    void LeaveTile(int x, int y)
-    {
-        if (currentObjectGrid[x][y].name.Contains("oneB"))
-        {
-            currentObjectGrid[x][y].GetComponent<oneBranch>().KillTree();
-        }
+	void TouchTile(int x, int y)
+	{
+		if (currentObjectGrid[x][y].name.Contains("oneB"))
+		{
+			currentObjectGrid[x][y].GetComponent<oneBranch>().Touch();
+		}
 		else if (currentObjectGrid[x][y].name.Contains("twoB"))
-        {
-            if (currentObjectGrid[x][y].gameObject.GetComponent<twoBranch>().touchCount >= 2)
-                currentObjectGrid[x][y].GetComponent<twoBranch>().KillTree();
-            else
-                currentObjectGrid[x][y].GetComponent<twoBranch>().switchTree();
-        }
-        else if (currentObjectGrid[x][y].name.Contains("fourB"))
-        {
+		{
+			currentObjectGrid[x][y].GetComponent<twoBranch>().Touch();
+		}
+		else if (currentObjectGrid[x][y].name.Contains("fourB"))
+		{
 
-        }
-        
-    }
+		}
+		else if (currentObjectGrid[x][y].name.Contains("Cliff"))
+		{
+			currentObjectGrid[x][y].GetComponent<Cliff>().Touch();
+		}
+	}
 
-    void OnTriggerEnter(Collider c)
-    {
-        Debug.Log("Collision!");
+	void LeaveTile(int x, int y)
+	{
+		if (currentObjectGrid[x][y].name.Contains("oneB"))
+		{
+			currentObjectGrid[x][y].GetComponent<oneBranch>().KillTree();
+		}
+		else if (currentObjectGrid[x][y].name.Contains("twoB"))
+		{
+			if (currentObjectGrid[x][y].gameObject.GetComponent<twoBranch>().touchCount >= 2)
+				currentObjectGrid[x][y].GetComponent<twoBranch>().KillTree();
+			else
+				currentObjectGrid[x][y].GetComponent<twoBranch>().switchTree();
+		}
+		else if (currentObjectGrid[x][y].name.Contains("fourB"))
+		{
 
-        if (c.gameObject.tag == "Banana" && !birded)
-        {
-            Debug.Log("banana acquired");
+		}
 
-            bananaCount++;
-            Destroy(c.gameObject);
-        } 
-    }
+	}
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(10,10,30,30), bananaCount.ToString());
-    }
+	void OnTriggerEnter(Collider c)
+	{
+		Debug.Log("Collision!");
 
-    public void Die()
-    {
-        canMove = false;
-        lastDirection = "up";
-        this.transform.rotation = new Quaternion(0f,0f,0f,1f);
+		if (c.gameObject.tag == "Banana")
+		{
+			Debug.Log("banana acquired");
+
+			bananaCount++;
+			Destroy(c.gameObject);
+		} 
+	}
+
+	void OnGUI()
+	{
+		GUI.Label(new Rect(10,10,30,30), bananaCount.ToString());
+	}
+
+	public void Die()
+	{
+		canMove = false;
+		lastDirection = "up";
+		this.transform.rotation = new Quaternion(0f,0f,0f,1f);
 		Debug.Log ("DEAD");
-        GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>().levelDefeat();
+		GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>().levelDefeat();
 		//GameObject.FindGameObjectWithTag ("EditorOnly").GetComponent<Text> ().enabled = true;
-        //anim.SetTrigger("Die");
-    }
+		//anim.SetTrigger("Die");
+	}
 
-    public void GameOver()
-    {
-        Debug.Log("GameOver");
-    }
-    public void RestoreMovement()
-    {
-        // Called by the end of the animation clip
-        transform.position = new Vector3(transform.position.x, origHeight, transform.position.z);
-        if (birded && birdMoves <= 0)
-        {
-            birded = false;
-            TouchTile(currentRow - 1, currentCol - 1);
-        }
-        canMove = true;
-    }
-    public void StopMovement()
-    {
-        canMove = true;
-    }
+	public void GameOver()
+	{
+		Debug.Log("GameOver");
+	}
+	public void RestoreMovement()
+	{
+		// Called by the end of the animation clip
+		transform.position = new Vector3(transform.position.x, origHeight, transform.position.z);
+		canMove = true;
+	}
+	public void StopMovement()
+	{
+		canMove = true;
+	}
 
 	public void setGrid(List<List<GameObject>> grid)
 	{
@@ -293,13 +301,13 @@ public class Monkey : MonoBehaviour {
 	{
 		currentRow = row;
 		currentCol = col;
-        if (currentObjectGrid[row -1][col - 1].name.Contains("oneB"))
-        {
-            currentObjectGrid[row - 1][col - 1].GetComponent<oneBranch>().Touch();
-        }
-        else if (currentObjectGrid[row - 1][col - 1].name.Contains("twoB"))
-        {
-            currentObjectGrid[row - 1][col - 1].GetComponent<twoBranch>().Touch();
-        }
-    }
+		if (currentObjectGrid[row -1][col - 1].name.Contains("oneB"))
+		{
+			currentObjectGrid[row - 1][col - 1].GetComponent<oneBranch>().Touch();
+		}
+		else if (currentObjectGrid[row - 1][col - 1].name.Contains("twoB"))
+		{
+			currentObjectGrid[row - 1][col - 1].GetComponent<twoBranch>().Touch();
+		}
+	}
 }

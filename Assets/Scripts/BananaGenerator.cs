@@ -30,7 +30,7 @@ public class BananaGenerator : MonoBehaviour {
         {
             s += bananaString[i];
         }
-        Debug.Log(s);
+        //Debug.Log(s);
         //GenerateBananas(m_rows, m_cols, s);
     }
 
@@ -39,7 +39,7 @@ public class BananaGenerator : MonoBehaviour {
         m_rows = 2 * GetComponent<gridRoot>().rows - 1;
         m_cols = GetComponent<gridRoot>().cols;
         m_offset = GetComponent<gridRoot>().offset;
-        Debug.Log(m_rows + " " + m_cols + "BAN");
+        //Debug.Log(m_rows + " " + m_cols + "BAN");
         GenerateBananas(m_rows, m_cols, s);
     }
 
@@ -79,10 +79,10 @@ public class BananaGenerator : MonoBehaviour {
 
             for (int c = 0; c < numOfCols; c++)
             {
-                Debug.Log(r + " " + c);
+                //Debug.Log(r + " " + c);
 				if (stringIndex < input.Length && (input[stringIndex] == 'B' || input[stringIndex] == 'b'))
                 {
-                    Debug.Log("BANNA");
+                    //Debug.Log("BANNA");
                     GameObject current = Instantiate(banana, new Vector3(currentX, start.y, currentZ), Quaternion.identity) as GameObject;
                     bananaList.Add(current);
                     bananaCount++;
@@ -94,10 +94,9 @@ public class BananaGenerator : MonoBehaviour {
             isOddRow = !isOddRow;
             currentZ -= m_offset / 2;
         }
-        Debug.Log("PlayerSuff");
 
         GameObject player = GameObject.FindGameObjectWithTag("Monkey");
         player.GetComponent<Monkey>().bananaGoal = bananaCount;
-        Debug.Log("end");
+        //Debug.Log("end");
     }
 }

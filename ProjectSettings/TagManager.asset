@@ -9,6 +9,7 @@ TagManager:
   - Banana
   - GameMaster
   - music
+  - LevelManager
   layers:
   - Default
   - TransparentFX

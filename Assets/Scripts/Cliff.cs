@@ -17,6 +17,8 @@ public class Cliff : MonoBehaviour {
 	public void Touch()
 	{
 		GameObject player = GameObject.FindGameObjectWithTag ("Monkey");
+
+		Debug.Log (this.gameObject.name);
 		player.GetComponent<Monkey> ().Die ();
 	}
 }

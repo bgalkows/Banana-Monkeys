@@ -12,6 +12,7 @@ public class gridRoot : MonoBehaviour {
     public float scalar;
 
 
+
     public float offset = 0.2f;
 
     public GameObject playField;
@@ -19,9 +20,9 @@ public class gridRoot : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		actualGenerateGrid (3, 3, "11111c11c", 3, 1, 1, 3);
+		//actualGenerateGrid (3, 3, "11111c11c", 3, 1, 1, 3);
         GameObject player = GameObject.FindGameObjectWithTag("Monkey");
-        player.GetComponent<Monkey>().setGrid(objectGrid);
+        //player.GetComponent<Monkey>().setGrid(objectGrid);
     }
 	
 	// Update is called once per frame
@@ -79,16 +80,16 @@ public class gridRoot : MonoBehaviour {
 					objectGrid [r].Add (current);
 				}
 					else if (input [stringIndex] == 'b') {
-					GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
+					//GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
 					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 2.5f, currentZ), Quaternion.identity) as GameObject;
-					objectGrid [r].Add (current);
+					//objectGrid [r].Add (current);
 					objectGrid [r].Add (current2);
 					current2.transform.GetChild(0).GetComponent<BlueJay> ().latentMoveStock = 4;
 				}
 					else if (input [stringIndex] == 'n') {
-					GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
+					//GameObject current = Instantiate (oneBranch, new Vector3 (currentX, start.y, currentZ), Quaternion.identity) as GameObject;
 					GameObject current2 = Instantiate (blue, new Vector3 (currentX, start.y + 2.5f, currentZ), Quaternion.identity) as GameObject;
-					objectGrid [r].Add (current);
+					//objectGrid [r].Add (current);
 					objectGrid [r].Add (current2);
 					current2.transform.GetChild(0).GetComponent<BlueJay> ().latentMoveStock = 2;
 				}

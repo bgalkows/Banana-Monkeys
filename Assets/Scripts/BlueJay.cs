@@ -15,10 +15,10 @@ public class BlueJay : MonoBehaviour {
 		latentMoveStock = 4;
 		currentMoveStock = 2;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void OnTriggerEnter(Collider c)
@@ -31,9 +31,10 @@ public class BlueJay : MonoBehaviour {
 				r.enabled = false;
 			}
 
-            m.birded = m.justBirded = true;
+			m.birded = true;
 			m.birdMoves += latentMoveStock;
 			proc = true;
 		}
 	}
 }
+
