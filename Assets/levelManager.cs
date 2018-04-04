@@ -32,7 +32,7 @@ public class levelManager : MonoBehaviour {
 	public void loadLevelByID( int levelNum )
 	{
 		SceneManager.LoadScene ("DJ");
-		level = levelNum;
+		level = levelNum - 1;
 
 		StartCoroutine ("generate");
 

@@ -75,8 +75,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentRow--;
 
@@ -108,8 +106,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentCol--;
 
@@ -143,8 +139,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentRow++;
 
@@ -177,8 +171,6 @@ public class Monkey : MonoBehaviour {
 				LeaveTile(currentRow - 1, currentCol - 1);
 			else {
 				birdMoves--;
-				if (birdMoves <= 0)
-					birded = false;
 			}
 			currentCol++;
 
@@ -250,7 +242,7 @@ public class Monkey : MonoBehaviour {
 	{
 		Debug.Log("Collision!");
 
-		if (c.gameObject.tag == "Banana")
+		if (c.gameObject.tag == "Banana" && !birded)
 		{
 			Debug.Log("banana acquired");
 
@@ -283,7 +275,12 @@ public class Monkey : MonoBehaviour {
 	{
 		// Called by the end of the animation clip
 		transform.position = new Vector3(transform.position.x, origHeight, transform.position.z);
-		canMove = true;
+        if (birded && birdMoves <= 0)
+        {
+            birded = false;
+            TouchTile(currentRow - 1, currentCol - 1);
+        }
+        canMove = true;
 	}
 	public void StopMovement()
 	{
