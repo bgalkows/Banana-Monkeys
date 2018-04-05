@@ -32,7 +32,7 @@ public class levelManager : MonoBehaviour {
 	public void loadLevelByID( int levelNum )
 	{
 		SceneManager.LoadScene ("DJ");
-		level = levelNum - 1;
+		level = levelNum;
 
 		StartCoroutine ("generate");
 
@@ -74,8 +74,10 @@ public class levelManager : MonoBehaviour {
 
 
 
-		generator.actualGenerateGrid (rows, cols, state, startRow, startCol, endRow, endCol);
-		bananaGen.GenerateBananas(rows, cols, bananaString);
+        generator.actualGenerateGrid (rows, cols, state, startRow, startCol, endRow, endCol);
+        //generator.generateTransposedGrid(rows, cols, state, startRow, startCol, endRow, endCol);
+
+        bananaGen.GenerateBananas(rows, cols, bananaString);
 		GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
 		//Stop motion
 		player.StopMovement();

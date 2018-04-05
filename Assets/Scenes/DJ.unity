@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465791, g: 0.49641317, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.574817, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 238353641}
   m_LocalRotation: {x: 0.67541367, y: -0, z: -0, w: 0.73743916}
   m_LocalPosition: {x: -0.514, y: -1.932, z: 0.307}
-  m_LocalScale: {x: 4.615331, y: 3.4729133, z: 1}
+  m_LocalScale: {x: 3.5282416, y: 1.9620397, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1251,6 +1251,7 @@ MonoBehaviour:
   birdMoves: 0
   birded: 0
   canMove: 1
+  lastDirection: up
   maxRow: 4
   maxCol: 4
   currentRow: 0
@@ -5275,6 +5276,7 @@ MonoBehaviour:
   generator: {fileID: 0}
   bananaGen: {fileID: 0}
   player: {fileID: 0}
+  transposed: 0
 --- !u!4 &2134950242
 Transform:
   m_ObjectHideFlags: 0

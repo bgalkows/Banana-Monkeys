@@ -99,4 +99,63 @@ public class BananaGenerator : MonoBehaviour {
         player.GetComponent<Monkey>().bananaGoal = bananaCount;
         //Debug.Log("end");
     }
+
+
+
+    public void generateTBananas(int rows, int cols, string input)
+    {
+        Debug.Log("GEN " + rows + " " + cols);
+        float rowOneZ;
+        float colOneX;
+        int bananaCount = 0;
+        Vector3 start = new Vector3(transform.position.x, transform.position.y + bananaHeight, transform.position.z);
+
+
+        colOneX = start.x;
+        rowOneZ = start.z - (m_offset / 2);
+
+        float currentZ;
+        float currentX = colOneX;
+        int stringIndex = 0;
+
+        bool isOddRow = true;
+
+        for (int r = 0; r < 2 * rows; r++)
+        {
+            int numOfCols;
+            if (isOddRow)
+            {
+                numOfCols = cols - 1;
+                currentZ = rowOneZ;
+
+            }
+            else
+            {
+                numOfCols = cols;
+                currentZ = rowOneZ + m_offset / 2;
+
+            }
+
+            for (int c = 0; c < numOfCols; c++)
+            {
+                //Debug.Log(r + " " + c);
+                if (stringIndex < input.Length && (input[stringIndex] == 'B' || input[stringIndex] == 'b'))
+                {
+                    //Debug.Log("BANNA");
+                    GameObject current = Instantiate(banana, new Vector3(currentX, start.y, currentZ), Quaternion.identity) as GameObject;
+                    bananaList.Add(current);
+                    bananaCount++;
+                }
+
+                currentZ -= m_offset;
+                stringIndex++;
+            }
+            isOddRow = !isOddRow;
+            currentX += m_offset / 2;
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Monkey");
+        player.GetComponent<Monkey>().bananaGoal = bananaCount;
+        //Debug.Log("end");
+    }
 }

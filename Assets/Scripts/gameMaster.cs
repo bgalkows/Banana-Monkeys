@@ -11,6 +11,8 @@ public class gameMaster : MonoBehaviour {
 	public BananaGenerator bananaGen;
 	public Monkey player;
 
+    public bool transposed = false;
+
 	// Use this for initialization
 	void Start() {
 		gameStates = new string[] {
@@ -76,9 +78,18 @@ public class gameMaster : MonoBehaviour {
 		}
 
 
-
-		generator.actualGenerateGrid (rows, cols, state, startRow, startCol, endRow, endCol);
-		bananaGen.GenerateBananas(rows, cols, bananaString);
+        if (!transposed)
+        {
+            generator.actualGenerateGrid(rows, cols, state, startRow, startCol, endRow, endCol);
+            bananaGen.GenerateBananas(rows, cols, bananaString);
+        }
+        else
+        {
+            generator.generateTransposedGrid(rows, cols, state, startRow, startCol, endRow, endCol);
+            bananaGen.generateTBananas(rows, cols, bananaString);
+        }
+            
+		
 		GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
 		//Stop motion
 		player.StopMovement();
@@ -106,6 +117,7 @@ public class gameMaster : MonoBehaviour {
 		}
 
 
+
 		string[] splitState = gameStates [currentLevel].Split (' ');
 		int rows = Int32.Parse(splitState [0]);
 		int cols = Int32.Parse (splitState [1]);
@@ -130,19 +142,38 @@ public class gameMaster : MonoBehaviour {
 		{
 			Destroy(b);
 		}
+        
+        System.Random rand = new System.Random();
+        
+        int roll = rand.Next(1, 3);
+        Debug.Log("RAND =   " + Convert.ToString(roll));
+        if (roll == 1)
+        {
+            transposed = false;
+            generator.actualGenerateGrid(rows, cols, state, startRow, startCol, endRow, endCol);
+            bananaGen.GenerateBananas(rows, cols, bananaString);
+        }
+        else
+        {
+            transposed = true;
+            generator.generateTransposedGrid(rows, cols, state, startRow, startCol, endRow, endCol);
+            bananaGen.generateTBananas(rows, cols, bananaString);
+        }
 
-
-		generator.actualGenerateGrid (rows, cols, state, startRow, startCol, endRow, endCol);
-		bananaGen.GenerateBananas(rows, cols, bananaString);
+		
 		GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
 
 		if (rows == 3) {
 			GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (.77f, 8.12f, -5.49f);
-		} else if (rows == 4) {
+            resp.transform.localScale = new Vector3(3.528242f, 1.96204f, 1f);
+
+        } else if (rows == 4) {
 			GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (.77f, 9.6f, -6.6f);
-		} else {
+            resp.transform.localScale = new Vector3(4.040634f, 2.349884f, 1f);
+        } else {
 			GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (.77f, 11.01f, -7.67f);
-		}
+            resp.transform.localScale = new Vector3(4.571733f, 2.356324f, 1f);
+        }
 
 		//Stop motion
 		player.StopMovement();
