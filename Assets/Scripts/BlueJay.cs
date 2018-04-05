@@ -23,6 +23,7 @@ public class BlueJay : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c)
 	{
+        //hide bird on collision with player
 		Debug.Log ("COLLIDED");
 		if (c.gameObject.tag == "Monkey" && !proc) {
 			MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
@@ -31,6 +32,7 @@ public class BlueJay : MonoBehaviour {
 				r.enabled = false;
 			}
 
+            //unhide bird on top of player
 			m.birded = true;
 			m.birdMoves += latentMoveStock;
 			proc = true;

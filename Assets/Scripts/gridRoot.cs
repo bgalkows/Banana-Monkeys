@@ -32,15 +32,20 @@ public class gridRoot : MonoBehaviour {
 
 	public void actualGenerateGrid( int rows, int cols, string input, int startRow, int startCol, int endRow, int endCol)
 	{
+
         Debug.Log("ACTUAL");
+
+        //resize terrain to fit new proposed grid
         playField.transform.localScale = new Vector3(cols, transform.localScale.y, rows)*scalar;
 
+        //load gameobjects 
 		GameObject oneBranch = Resources.Load ("oneBranch") as GameObject;
 		GameObject twoBranch = Resources.Load ("twoBranch") as GameObject;
 		GameObject fourBranch = Resources.Load ("fourBranch") as GameObject;
 		GameObject Cliff = Resources.Load ("Cliff") as GameObject;
 		GameObject blue = Resources.Load ("dummyBird") as GameObject;
 
+        //set initial values
 		Vector3 start = this.transform.position;
         Debug.Log(start);
 		float rowOneZ;
@@ -61,6 +66,7 @@ public class gridRoot : MonoBehaviour {
 		//}
 
 
+        //loop through rows and columns while instantiating and adding the specified gameobjects to objectGrid 
 		for (int r = 0; r < rows; r++) 
 		{
 			objectGrid.Add(new List<GameObject>());
@@ -100,12 +106,15 @@ public class gridRoot : MonoBehaviour {
 			currentZ -= offset;
 		}
 
+
+        //specify starting location
 		if (objectGrid [startRow - 1] [startCol - 1].name.Contains ("oneB")) {
 			objectGrid [startRow - 1] [startCol - 1].GetComponent<oneBranch> ().start = true;
 		} else if (objectGrid [startRow - 1] [startCol - 1].name.Contains ("twoB")) {
 			objectGrid [startRow - 1] [startCol - 1].GetComponent<twoBranch> ().start = true;
 		}
 
+        //specify ending location
 		if (objectGrid [endRow - 1] [endCol - 1].name.Contains ("oneB")) {
 			objectGrid [endRow - 1] [endCol - 1].GetComponent<oneBranch> ().end = true;
 			objectGrid [endRow - 1] [endCol - 1].GetComponent<oneBranch> ().myRow = endRow;
@@ -117,7 +126,7 @@ public class gridRoot : MonoBehaviour {
 		}
 
         
-
+        //set key player values
         GameObject player = GameObject.FindGameObjectWithTag ("Monkey");
 		//Debug.Log (objectGrid);
 		player.GetComponent<Monkey> ().setGrid (objectGrid);
@@ -128,6 +137,7 @@ public class gridRoot : MonoBehaviour {
 
    public void generateTransposedGrid(int rows, int cols, string input, int startRow, int startCol, int endRow, int endCol)
     {
+        //generate grid modified to transpose the original input string
         playField.transform.localScale = new Vector3(rows, transform.localScale.y, cols) * scalar;
 
         GameObject oneBranch = Resources.Load("oneBranch") as GameObject;

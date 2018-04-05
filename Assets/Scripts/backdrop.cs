@@ -19,6 +19,7 @@ public class backdrop : MonoBehaviour {
 	}
 
 	public void shiftBack()
+        //shift backdrop sprite 1 spot forward
 	{
 		inc++;
 		if (inc == 2)

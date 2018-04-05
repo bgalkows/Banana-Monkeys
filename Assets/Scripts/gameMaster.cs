@@ -15,6 +15,8 @@ public class gameMaster : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+
+        //string array holding all games states:    row / col / tiles / start row+col / end row+col / bananas
 		gameStates = new string[] {
 			"3 3 11111c11c 3 1 1 3 xxxxxxxxxxxx",
 			"4 4 11111c1111c1c11c 4 3 3 4 xxxxxxxxxxxxxxxxxxxxxxxx",
@@ -54,6 +56,7 @@ public class gameMaster : MonoBehaviour {
 
 	public void levelDefeat()
 	{ 
+        //parse level string corresponding to current level
 		string[] splitState = gameStates [currentLevel].Split (' ');
 		int rows = Int32.Parse(splitState [0]);
 		int cols = Int32.Parse (splitState [1]);
@@ -64,6 +67,7 @@ public class gameMaster : MonoBehaviour {
 		int endCol = Int32.Parse (splitState [6]);
 		string bananaString = splitState[7];
 
+        //destroy current gameobjects
 		foreach (List<GameObject> r in generator.objectGrid) {
 			foreach (GameObject g in r) {
 				Destroy (g);
@@ -77,7 +81,7 @@ public class gameMaster : MonoBehaviour {
 			Destroy(b);
 		}
 
-
+        //generate the actual grid -  also based on whether transposition is set
         if (!transposed)
         {
             generator.actualGenerateGrid(rows, cols, state, startRow, startCol, endRow, endCol);
@@ -89,9 +93,8 @@ public class gameMaster : MonoBehaviour {
             bananaGen.generateTBananas(rows, cols, bananaString);
         }
             
-		
+		//set necessary values on player
 		GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
-		//Stop motion
 		player.StopMovement();
 		player.birded = false;
 		player.birdMoves = 0;
@@ -107,8 +110,10 @@ public class gameMaster : MonoBehaviour {
 
 	public void levelWin()
 	{
+        //increment level counter
 		++currentLevel;
 
+        //interact with music/backdrop scripts to shift forward
 		backdrop resp = GameObject.FindGameObjectWithTag ("Respawn").GetComponent<backdrop> ();
 		mShift mb = GameObject.FindGameObjectWithTag ("music").GetComponent<mShift> ();
 		if (currentLevel % 3 == 0) {
@@ -117,7 +122,7 @@ public class gameMaster : MonoBehaviour {
 		}
 
 
-
+        //parse current level string
 		string[] splitState = gameStates [currentLevel].Split (' ');
 		int rows = Int32.Parse(splitState [0]);
 		int cols = Int32.Parse (splitState [1]);
@@ -130,6 +135,7 @@ public class gameMaster : MonoBehaviour {
 
 		player.bananaCount = 0;
 
+        //destroy old gameobjects
 		foreach (List<GameObject> r in generator.objectGrid) {
 			foreach (GameObject g in r) {
 				Destroy (g);
@@ -143,6 +149,7 @@ public class gameMaster : MonoBehaviour {
 			Destroy(b);
 		}
         
+        //flip a coin for if the next level should be transposed
         System.Random rand = new System.Random();
         
         int roll = rand.Next(1, 3);
@@ -163,6 +170,7 @@ public class gameMaster : MonoBehaviour {
 		
 		GameObject obj = generator.objectGrid [startRow - 1] [startCol - 1];
 
+        //zoom camera + resize backdrop based on size of grid
 		if (rows == 3) {
 			GameObject.FindGameObjectWithTag ("MainCamera").transform.position = new Vector3 (.77f, 8.12f, -5.49f);
             resp.transform.localScale = new Vector3(3.528242f, 1.96204f, 1f);

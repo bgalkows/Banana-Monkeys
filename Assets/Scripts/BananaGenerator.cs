@@ -35,6 +35,7 @@ public class BananaGenerator : MonoBehaviour {
     }
 
     public void RespawnBananas(string s)
+        //respawn bananas of level - used for defeat
     {
         m_rows = 2 * GetComponent<gridRoot>().rows - 1;
         m_cols = GetComponent<gridRoot>().cols;
@@ -44,6 +45,7 @@ public class BananaGenerator : MonoBehaviour {
     }
 
     public void GenerateBananas(int rows, int cols, string input)
+    //detect locations based on grid information and then instantiate bananas based on input string
     {
         Debug.Log("GEN " + rows + " " + cols);
         float rowOneZ;
@@ -103,7 +105,9 @@ public class BananaGenerator : MonoBehaviour {
 
 
     public void generateTBananas(int rows, int cols, string input)
+        //generate bananas for transposed grid
     {
+        
         Debug.Log("GEN " + rows + " " + cols);
         float rowOneZ;
         float colOneX;

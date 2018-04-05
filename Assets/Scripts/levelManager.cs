@@ -13,6 +13,8 @@ public class levelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+
+        //establish singleton structure
 		if (!created) {
 			DontDestroyOnLoad (this.gameObject);
 			created = true;
@@ -31,6 +33,7 @@ public class levelManager : MonoBehaviour {
 
 	public void loadLevelByID( int levelNum )
 	{
+        //load DJ scene and then call coroutine to override default level
 		SceneManager.LoadScene ("DJ");
 		level = levelNum;
 
@@ -42,10 +45,15 @@ public class levelManager : MonoBehaviour {
 
 	IEnumerator generate()
 	{
+        //wait for first map to be generated (otherwise this will be overrided
 		yield return new WaitForSeconds(1f);
 		GM = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 		BananaGenerator bananaGen = GameObject.FindGameObjectWithTag ("GameController").GetComponent<BananaGenerator> ();
 		Monkey player = GameObject.FindGameObjectWithTag ("Monkey").GetComponent<Monkey> ();
+
+
+        //follow standard level generation steps - see GameMaster script
+
 
 		string[] splitState = GM.gameStates [level].Split (' ');
 		int rows = Int32.Parse(splitState [0]);

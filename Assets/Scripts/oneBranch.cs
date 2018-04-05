@@ -20,11 +20,13 @@ public class oneBranch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //reveal star only on end tree
 		if (end) {
 			//Debug.Log (gameObject.transform.GetChild (0).gameObject.name + gameObject.transform.GetChild (1).gameObject.name + gameObject.transform.GetChild (2).gameObject.name);
 			this.gameObject.transform.GetChild (1).gameObject.SetActive (true);
 		}
 
+        //trigger end of level effects if all conditions are met
 		if (!proc && myRow == player.GetComponent<Monkey>().currentRow && myCol == player.GetComponent<Monkey>().currentCol && end && player.GetComponent<Monkey> ().bananaCount >= player.GetComponent<Monkey> ().bananaGoal)
 		{
 			proc = true;
@@ -62,6 +64,7 @@ public class oneBranch : MonoBehaviour {
 
     IEnumerator Waiting()
     {
+        //establish brief waiting period before calling gameMaster to move to next level
         player.GetComponent<Monkey>().canMove = false;
         yield return new WaitForSeconds(1f);
         GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>().levelWin();

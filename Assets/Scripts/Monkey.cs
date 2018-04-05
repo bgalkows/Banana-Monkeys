@@ -32,6 +32,7 @@ public class Monkey : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        //reveal bird if birded, otherwise hide it
 		if (birded) {
 			GameObject myBird = GameObject.FindGameObjectWithTag ("Finish");
 			MeshRenderer[] m = GetComponentsInChildren<MeshRenderer>();
@@ -49,7 +50,7 @@ public class Monkey : MonoBehaviour {
 			}
 		}
 
-
+        //if the player cannot move, perform in-transit animation
 		if (!canMove)
 		{
 			Vector3 directionOfTravel = m_destination - transform.position;
@@ -71,6 +72,8 @@ public class Monkey : MonoBehaviour {
 		//Debug.Log(currentObjectGrid[currentRow-1][currentCol-1].name);
 		if ((Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow)) && (currentRow - 1) >= 1) {
 			Debug.Log ("start touch");
+
+            //clean up previous tile
 			if (!birded)
 				LeaveTile (currentRow - 1, currentCol - 1);
 			else {
@@ -78,6 +81,7 @@ public class Monkey : MonoBehaviour {
 			}
 			currentRow--;
 
+            //rotate monkey based on direction it is currently facing
 			if (lastDirection == "down")
 				this.transform.Rotate (new Vector3 (0, 0, 180));
 			else if (lastDirection == "left")
@@ -96,6 +100,7 @@ public class Monkey : MonoBehaviour {
 			lastDirection = "up";
 
 			Debug.Log ("leave touch");
+            //touch new tile
 			if (!birded)
 				TouchTile (currentRow - 1, currentCol - 1);
 
@@ -200,6 +205,8 @@ public class Monkey : MonoBehaviour {
 
 	void TouchTile(int x, int y)
 	{
+        //call touch method on the game object in current square
+
 		if (currentObjectGrid[x][y].name.Contains("oneB"))
 		{
 			currentObjectGrid[x][y].GetComponent<oneBranch>().Touch();
@@ -220,6 +227,7 @@ public class Monkey : MonoBehaviour {
 
 	void LeaveTile(int x, int y)
 	{
+        //erase old trees
 		if (currentObjectGrid[x][y].name.Contains("oneB"))
 		{
 			currentObjectGrid[x][y].GetComponent<oneBranch>().KillTree();
@@ -242,6 +250,7 @@ public class Monkey : MonoBehaviour {
 	{
 		Debug.Log("Collision!");
 
+        //detect collision with bananas
 		if (c.gameObject.tag == "Banana" && !birded)
 		{
 			Debug.Log("banana acquired");
@@ -253,11 +262,13 @@ public class Monkey : MonoBehaviour {
 
 	void OnGUI()
 	{
+        //create banana count box? not really necessary anymore
 		GUI.Label(new Rect(10,10,30,30), bananaCount.ToString());
 	}
 
 	public void Die()
 	{
+        //reconfigure variables and then call gameMaster to reset level
 		canMove = false;
 		lastDirection = "up";
 		this.transform.rotation = new Quaternion(0f,0f,0f,1f);
@@ -269,6 +280,7 @@ public class Monkey : MonoBehaviour {
 
 	public void GameOver()
 	{
+        //this is pointless
 		Debug.Log("GameOver");
 	}
 	public void RestoreMovement()
@@ -289,6 +301,7 @@ public class Monkey : MonoBehaviour {
 
 	public void setGrid(List<List<GameObject>> grid)
 	{
+        //align monkey's internal grid variables with the grid created
 		currentObjectGrid = grid;
 		maxRow = grid.Count;
 		maxCol = grid [0].Count;
@@ -296,6 +309,7 @@ public class Monkey : MonoBehaviour {
 
 	public void setCurrentPosition(int row, int col)
 	{
+        //align monkey's personal grid variables + touch beginning tile
 		currentRow = row;
 		currentCol = col;
 		if (currentObjectGrid[row -1][col - 1].name.Contains("oneB"))
