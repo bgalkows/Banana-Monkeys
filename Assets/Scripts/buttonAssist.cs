@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class buttonAssist : MonoBehaviour {
 
-	public Button myButton;
+	public UnityEngine.UI.Button myButton;
 	public levelManager LM;
 
 	public int level;
